@@ -1,17 +1,36 @@
 package com.meritamerica.assignment3;
 
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.util.Arrays;
 
 public class MeritBank {
 
 	private static AccountHolder[] accountHolders;
 	private static CDOffering[] cdOfferings;
+	public static Long nextAccountNumber;
 
-	public static boolean readFromFile(String fileName) {
+	
+	public static void setNextAccountNumber(Long nextAccountNumber) {
+		MeritBank.nextAccountNumber = nextAccountNumber;
+	}
+
+	public static boolean writeToFile(String fileName) {
 		
 		return true;
 	}
 	
+	public static boolean readFromFile(String fileName) {
+		try {
+			BufferedReader br = new BufferedReader(new FileReader(fileName));
+		} catch (FileNotFoundException e) {
+			System.out.println("The file was not found");
+			return false;
+		}
+		return true;
+	}
+
 	public static AccountHolder[] sortAccountHolders() {
 		AccountHolder[] unsortedArray = accountHolders;
 		Arrays.sort(unsortedArray);
@@ -19,6 +38,7 @@ public class MeritBank {
 		// not sure how they want the array sorted yet.
 		return unsortedArray;
 	}
+
 	public static void addAccountHolder(AccountHolder accountHolder) {
 		// if the accountHolders array has no accounts in it, we initialize it
 		// with a new array containing one index and add accountHolder to the index.
@@ -54,7 +74,7 @@ public class MeritBank {
 		CDOffering bestCDOffering = null;
 		double highestYield = 0;
 
-		if(currentOfferings != null) {
+		if (currentOfferings != null) {
 			for (int i = 0; i < currentOfferings.length; i++) {
 				double yield = futureValue(depositAmount, currentOfferings[i].getInterestRate(),
 						currentOfferings[i].getTerm());
@@ -75,8 +95,9 @@ public class MeritBank {
 		CDOffering bestCDOffering = getBestCDOffering(depositAmount);
 		CDOffering secondBestCDOffering = null;
 
-		if(bestCDOffering != null) {
-			double highestYield = futureValue(depositAmount, bestCDOffering.getInterestRate(), bestCDOffering.getTerm());
+		if (bestCDOffering != null) {
+			double highestYield = futureValue(depositAmount, bestCDOffering.getInterestRate(),
+					bestCDOffering.getTerm());
 
 			double secondHighestYield = 0;
 
@@ -113,9 +134,9 @@ public class MeritBank {
 			return totalBalancesOfAccountHolders;
 		} else {
 			for (int i = 0; i < accountHolders.length; i++) {
-				if(accountHolders[i] != null) {
-					totalBalancesOfAccountHolders = 
-							totalBalancesOfAccountHolders + accountHolders[i].getCombinedBalance();
+				if (accountHolders[i] != null) {
+					totalBalancesOfAccountHolders = totalBalancesOfAccountHolders
+							+ accountHolders[i].getCombinedBalance();
 				}
 			}
 			return totalBalancesOfAccountHolders;

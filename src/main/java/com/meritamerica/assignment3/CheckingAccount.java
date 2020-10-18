@@ -58,4 +58,8 @@ public class CheckingAccount extends BankAccount {
 		}
 	}
 	
+	public double futureValue(int years) {
+		return getBalance() * (Math.pow(1 + interestRate, years));
+	}
+	
 }

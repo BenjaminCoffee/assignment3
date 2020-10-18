@@ -1,5 +1,6 @@
 package com.meritamerica.assignment3;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -11,9 +12,12 @@ public class CDAccount extends BankAccount {
 
 	public CDAccount(CDOffering offering, double balance, 
 			long accountNumber, Date date) {
+		super(accountNumber, balance, date);
+		
 		this.offering = offering;
-		this.balance = balance;
-		this.startDate = date;
+		//this.balance = balance;
+		//this.startDate = date;
+		//this.accountNumber = accountNumber;
 	}
 	public CDAccount(CDOffering offering, double balance) {
 		this.startDate = new Date();
@@ -43,7 +47,6 @@ public class CDAccount extends BankAccount {
 			System.out.println("readFromString in CDAccount "
 					+ "threw NumberFormatException");
 			throw new NumberFormatException();
-			
 		}
 	}
 
@@ -72,6 +75,16 @@ public class CDAccount extends BankAccount {
 		int years = offering.getTerm();
 
 		return balance * (Math.pow(1 + interestRate, years));
+	}
+	
+	public boolean withdraw(double amount) {
+		
+		return false;
+	}
+	
+	public boolean deposit(double amount) {
+		
+		return false;
 	}
 
 }

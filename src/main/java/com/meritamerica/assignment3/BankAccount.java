@@ -11,7 +11,7 @@ public class BankAccount {
 	private long accountNumber;
 	private Date accountOpenedOn;
 	
-	private static long currentAccountNumber = 10000000000L;
+	private static long currentAccountNumber = 0;//10000000000L;
 	private static ArrayList<Long> usedAccountNumbers = new ArrayList<>();
 
 	public BankAccount() {
@@ -31,6 +31,7 @@ public class BankAccount {
 		this.interestRate = interestRate;
 	}
 
+	// we are incorrectly calling this constructor
 	public BankAccount(double openingBalance, double interestRate,
 			Date accountOpenedOn) {
 		assignUniqueAccountNumToThisAccount();
@@ -43,9 +44,15 @@ public class BankAccount {
 	public BankAccount(long accountNumber, double openingBalance, double interestRate) {
 		assignUniqueAccountNumToThisAccount(accountNumber);
 
-		this.accountNumber = accountNumber;
+		//this.accountNumber = accountNumber;
 		this.balance = openingBalance;
 		this.interestRate = interestRate;
+	}
+	
+	public BankAccount(long accountNumber, double balance, Date date) {
+		assignUniqueAccountNumToThisAccount(accountNumber);
+		this.balance = balance;
+		this.accountOpenedOn = date;
 	}
 	
 	public BankAccount(long accountNumber, double openingBalance, double interestRate,
@@ -53,7 +60,7 @@ public class BankAccount {
 		
 		assignUniqueAccountNumToThisAccount(accountNumber);
 
-		this.accountNumber = accountNumber;
+		//this.accountNumber = accountNumber;
 		this.balance = openingBalance;
 		this.interestRate = interestRate;
 		this.accountOpenedOn = accountOpenedOn;
