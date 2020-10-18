@@ -4,7 +4,7 @@ package com.meritamerica.assignment3;
  * This is the definition of the AccountHolder class.
  * It is meant to simulate an account holder of a banking application.
  */
-public class AccountHolder {
+public class AccountHolder implements Comparable<AccountHolder> {
 
 	private String firstName;
 	private String middleName;
@@ -104,9 +104,8 @@ public class AccountHolder {
 				CheckingAccount[] newCheckingAccountArray = new CheckingAccount[1];
 				newCheckingAccountArray[0] = newAccount;
 				this.checkingAccounts = newCheckingAccountArray;
-			} 
-		} 
-		else if (sum < 250000){
+			}
+		} else if (sum < 250000) {
 
 			sum = getCheckingBalance() + getSavingsBalance();
 
@@ -114,8 +113,7 @@ public class AccountHolder {
 				CheckingAccount[] newCheckingAccountArray = new CheckingAccount[1];
 				newCheckingAccountArray[0] = newAccount;
 				this.checkingAccounts = newCheckingAccountArray;
-			} 
-			else if (sum < 250000) {
+			} else if (sum < 250000) {
 
 				CheckingAccount[] newCheckingAccountArray = new CheckingAccount[currentArray.length + 1];
 
@@ -124,15 +122,12 @@ public class AccountHolder {
 				}
 				newCheckingAccountArray[newCheckingAccountArray.length - 1] = newAccount;
 				this.checkingAccounts = newCheckingAccountArray;
-			} 
-			else {
-				System.out.println(
-						"Your combined savings and checking account balances" + " must be less than 250,000");
+			} else {
+				System.out
+						.println("Your combined savings and checking account balances" + " must be less than 250,000");
 			}
 			return newAccount;
-		}
-		else 
-		{
+		} else {
 			System.out.println("Your combined savings and checking account balances" + " must be less than 250,000");
 			return newAccount;
 		}
@@ -264,8 +259,8 @@ public class AccountHolder {
 	}
 
 	public CDAccount addCDAccount(CDOffering cdOfferObj, double balance) {
-		//CDAccount cd = new CDAccount();
-		if(cdOfferObj != null) {
+		// CDAccount cd = new CDAccount();
+		if (cdOfferObj != null) {
 			CDAccount cd = new CDAccount(cdOfferObj, balance);
 			CDAccount[] currentArray = getCDAccounts();
 			if (currentArray == null) {
@@ -284,13 +279,13 @@ public class AccountHolder {
 			return cd;
 
 		}
-		
+
 		return null;
 	}
 
 	public double getCDBalance() {
 		CDAccount[] currentArray = getCDAccounts();
-		//System.out.println(currentArray.length);
+		// System.out.println(currentArray.length);
 		double sum = 0;
 		if (currentArray != null) {
 			for (int i = 0; i < currentArray.length; i++) {
@@ -369,5 +364,17 @@ public class AccountHolder {
 
 		// return the StringBuilder object as a string.
 		return str.toString();
+	}
+
+	@Override
+	public int compareTo(AccountHolder accHolder2) {
+
+		if (this.getCombinedBalance() > accHolder2.getCombinedBalance()) {
+			return 1;
+		} else if (this.getCombinedBalance() == accHolder2.getCombinedBalance()) {
+			return 0;
+		} else {
+			return -1;
+		}
 	}
 }

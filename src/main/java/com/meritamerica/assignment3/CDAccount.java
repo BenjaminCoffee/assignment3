@@ -51,7 +51,7 @@ public class CDAccount extends BankAccount {
 	}
 
 	public double getBalance() {
-		return balance;
+		return super.getBalance();
 	}
 
 	public double getInterestRate() {
@@ -63,7 +63,7 @@ public class CDAccount extends BankAccount {
 	}
 
 	public Date getOpenedOn() {
-		return startDate;
+		return super.getOpenedOn();
 	}
 
 	public long getAccountNumber() {

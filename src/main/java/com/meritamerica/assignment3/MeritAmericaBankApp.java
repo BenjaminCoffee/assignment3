@@ -7,6 +7,7 @@ public class MeritAmericaBankApp {
 		
 		CDAccount cdAccount = CDAccount.readFromString("84,20000,0.03,01/03/2020,5");
 		System.out.println(cdAccount.getAccountNumber());
+		System.out.println(cdAccount.getBalance());
 		//demonstration();
 	}
 	
